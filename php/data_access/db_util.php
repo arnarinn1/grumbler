@@ -2,20 +2,18 @@
 
 	class DbUtil
 	{
-		private $datbaseName;
+		private $database;
 
 		public function __construct()
 		{
-			$this->databaseName = "sqlite:grumpy.db";
+			$this->database = new PDO("sqlite:grumpy.db") or die ("Can't establish a connection to the database");
 		}
 
 		public function GetMessages()
 		{
 			try
 			{
-				$db = new PDO($this->databaseName) or die ("Can't establish a connection to the database");
-
-				$result = $db->query("select u.username, m.message from messages as m 
+				$result = $this->database->query("select u.username, m.message from messages as m 
 									  join users as u on u.id = m.userid");
 
 				foreach ($result as $row)
@@ -25,8 +23,21 @@
 			}
 			catch (PDOException $e)
 			{
-				print 'Exception: ' . $e.getMessage();
+				print 'Exception: ' . $e->getMessage();
 			}
+		}
+
+		public function ValidateUserInput($username, $password)
+		{
+			$preparedQuery = $this->database->prepare("SELECT * FROM users WHERE username= :username and password= :password LIMIT 1");
+			$preparedQuery->execute(array(':username' => $username, ':password' => $password));
+			
+			$rows = $preparedQuery->fetch(PDO::FETCH_NUM);
+			
+			$preparedQuery->execute(array(':username' => $username, ':password' => $password));
+			$user = $preparedQuery->fetch(PDO::FETCH_ASSOC);
+			
+			return $rows[0] == 1 ? $user : false;
 		}
 	}  
 
