@@ -7,12 +7,14 @@
 	$db = new DbUtil();
 
 	$username = $_POST["username"];
-	$password = $_POST["password"];
+	$password = sha1($_POST["password"]);
 
-	$user_exist = $db->ValidateUserInput($username, $password);
+	$user_exist = $db->ValidateUser($username, $password);
 
 	if ($user_exist == false)
-		print "You noob, you have no account";
+	{
+		header("Location: invalid_user.php");		
+	}
 	else
 	{
 		$_SESSION['user'] = $user_exist['username']; 

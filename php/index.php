@@ -11,7 +11,6 @@
 				<h1> Grumpy </h1>
 				<p class="lead"> Welcome to grumpy, a place to bitch about all your problems </p>
 			</div>
-			<h3> Sign in to Grumpy </h3>
 			<div class="row">
 				<div class="col-md-4">
 					<form method="post" action="validate_user.php" class="form-signin">
@@ -21,10 +20,12 @@
 						<label class="checkbox">
 				        	<input type="checkbox" value="remember-me"> Remember me
 				        </label>
-        				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in and stay grumpy</button>
 					</form>
 				</div>
 			</div>
+			<hr>
+			<p class="lead"> New to Grumpy ? <a href="signup_user.php">Sign-up</a></p>
 		</div>
 	</body>
 </html>

@@ -19,7 +19,9 @@
 
 				foreach ($result as $row)
 				{
-					print '<p>' . $row["username"] . ' tweeted: <br>' . $row['message'] . "</p>";
+					print '<div class="bs-callout bs-callout-info">';
+					print '<h4>' . $row["username"] . ' is grumpy </h4>';
+					print '<p>' . $row["message"] . '</p> </div>';
 				}
 			}
 			catch (PDOException $e)
@@ -97,6 +99,20 @@
 		{
 			//TODO:Insert to detailed info table
 			print $userId;
+		}
+
+		public function InsertMessage($userid, $datetime, $message)
+		{
+			try
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+				$insert = $db->prepare("INSERT INTO messages(userid, datetime, message) VALUES (:userid, :datetime, :message)");
+				$insert->execute(array('userid' => $userid, 'datetime' => $datetime, 'message' => $message));
+			}
+			catch (PDOException $e)
+			{
+				print 'Exception: ' . $e->getMessage();	
+			}
 		}
 	}  
 

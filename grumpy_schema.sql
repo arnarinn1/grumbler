@@ -21,7 +21,7 @@ CREATE TABLE messages
 (
 	id integer PRIMARY KEY, 
 	userid integer NOT NULL, 
-	timestamp integer NOT NULL, 
+	datetime integer NOT NULL, 
 	message text NOT NULL, 
 	FOREIGN KEY (userid) REFERENCES USERS (id)
 );
