@@ -1,7 +1,7 @@
 
 CREATE TABLE users 
 (
-	id int PRIMARY KEY,
+	id integer PRIMARY KEY,
 	username text NOT NULL,
 	password text NOT NULL,
 	UNIQUE (username)
@@ -9,27 +9,27 @@ CREATE TABLE users
 
 CREATE TABLE user_detailed
 (
-	userid int NOT NULL,
+	userid integer NOT NULL,
 	first_name text,
 	sec_name text,
-	birthdate int not null,
+	birthdate integer not null,
 	profile_picture blob not null,
 	FOREIGN KEY (userid) REFERENCES USERS (id)
 )
 
 CREATE TABLE messages 
 (
-	id int PRIMARY KEY, 
-	userid int NOT NULL, 
-	timestamp int NOT NULL, 
+	id integer PRIMARY KEY, 
+	userid integer NOT NULL, 
+	timestamp integer NOT NULL, 
 	message text NOT NULL, 
 	FOREIGN KEY (userid) REFERENCES USERS (id)
 );
 
 CREATE TABLE follows
 (
-	userid int NOT NULL, 
-	following int NOT NULL, 
+	userid integer NOT NULL, 
+	following integer NOT NULL, 
 	PRIMARY KEY (userid,following), 
 	FOREIGN KEY (userid) REFERENCES USERS (id), 
 	FOREIGN KEY (following) REFERENCES USERS (id)
