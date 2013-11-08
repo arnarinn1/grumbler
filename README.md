@@ -1,4 +1,4 @@
 grumbler
 ========
 
-Final project in a course at the Universitiy of Iceland, Web Development.
+Final project in a course at the University of Iceland, Web Development.
