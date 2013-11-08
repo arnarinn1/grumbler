@@ -9,13 +9,14 @@ CREATE TABLE users
 
 CREATE TABLE user_detailed
 (
-	userid integer NOT NULL,
-	first_name text,
-	sec_name text,
-	birthdate integer not null,
-	profile_picture blob not null,
-	FOREIGN KEY (userid) REFERENCES USERS (id)
-)
+	userid integer PRIMARY KEY,
+	firstname text,
+	secname text,
+	birth integer not null,
+	pictureid integer not null,
+	FOREIGN KEY (userid) REFERENCES USERS (id),
+	FOREIGN KEY (pictureid) REFERENCES USERS (id)
+);
 
 CREATE TABLE messages 
 (

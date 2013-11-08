@@ -56,12 +56,14 @@
 			try 
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$preparedQuery = $db->prepare("SELECT * FROM users WHERE username= :username LIMIT 1");
-				$preparedQuery->execute(array(':username' => $username));
+				$preparedQuery = $db->prepare("SELECT 1 FROM users WHERE username = :username");
+				$preparedQuery->bindParam(":username", $username);
+				$preparedQuery->execute();
 				
-				$rows = $preparedQuery->fetch(PDO::FETCH_NUM);
-
-				return $rows[0]== 1 ? true : false;
+				if ($preparedQuery->fetch()) {
+				  return true; } 
+				else {
+				  return false; }
 			} 
 			catch (PDOException $e)
 			{
@@ -83,11 +85,7 @@
 
 				$user = $preparedQuery->fetch(PDO::FETCH_ASSOC);
 
-				//Make sure we created the user
-				if($user != null)
-				{
-					$this->InsertUserDetailed($user["id"]);	
-				}
+				return $user["id"];	
 			}
 			catch (PDOException $e)
 			{
@@ -95,10 +93,19 @@
 			}
 		}
 
-		public function InsertUserDetailed($userId)
+		public function InsertUserDetailed($userid, $firstname, $secname, $birthdate)
 		{
-			//TODO:Insert to detailed info table
-			print $userId;
+			try
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+				$insert = $db->prepare("INSERT INTO user_detailed VALUES (:userid, :firstname, :secname, :birthdate, :pictureid)");
+				
+				$insert->execute(array('userid' => $userid, 'firstname' => $firstname, 'secname' => $secname, 'birthdate' => $birthdate, 'pictureid' => $userid));
+			}
+			catch (PDOException $e)
+			{
+				print 'Exception: ' . $e->getMessage();	
+			}
 		}
 
 		public function InsertMessage($userid, $datetime, $message)

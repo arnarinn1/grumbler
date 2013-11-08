@@ -13,7 +13,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<form method="post" action="validate_user.php" class="form-signin">
+					<form method="post" action="validate_login.php" class="form-signin">
 						<h2 class="form-signin-heading">Please sign in</h2>
 						<input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="">
 						<input type="password" class="form-control" name="password" placeholder="Password" required="">

@@ -13,7 +13,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4">
-					<form method="post" action="validate_signup.php">
+					<form method="post" action="validate_signup.php" enctype="multipart/form-data">
 						<h2 class="form-signin-heading">Enter your credentials</h2>
 						
 						<div class="form-group">
@@ -43,7 +43,7 @@
 
 						<div class="form-group">
 						    <label for="input_file">File input</label>
-						    <input type="file" id="input_file" name="inputpicture">
+						    <input type="file" id="input_file" name="photo">
 						</div>
 
         				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up and stay grumpy</button>
