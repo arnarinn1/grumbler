@@ -10,9 +10,10 @@ CREATE TABLE users
 CREATE TABLE user_detailed
 (
 	userid integer PRIMARY KEY,
-	firstname text,
-	secname text,
-	birth integer not null,
+	name text not null,
+	location text not null,
+	birthdate integer not null,
+	information text not null,
 	pictureid integer not null,
 	FOREIGN KEY (userid) REFERENCES USERS (id),
 	FOREIGN KEY (pictureid) REFERENCES USERS (id)

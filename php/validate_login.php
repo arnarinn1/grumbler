@@ -11,6 +11,8 @@
 
 	$user_exist = $db->ValidateUser($username, $password);
 
+	print $user_exist;
+
 	if ($user_exist == false)
 	{
 		header("Location: invalid_user.php");		

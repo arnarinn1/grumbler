@@ -14,17 +14,59 @@
 			try
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$result = $db->query("select u.username, m.message from messages as m 
-									  join users as u on u.id = m.userid");
+				$result = $db->query("SELECT u.username, m.message, m.datetime from messages as m 
+									  join users as u on u.id = m.userid
+									  order by m.datetime desc
+									  limit 20");
 
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
 					print '<h4>' . $row["username"] . ' is grumpy </h4>';
-					print '<p>' . $row["message"] . '</p> </div>';
+					print '<p>' . $row["message"] . '</p>';
+
+					$messageDate = $row["datetime"];
+					$dt = new DateTime("@$messageDate");
+					$formattedDate = $dt->format('d/n/Y H:i');
+
+					print '<p class="text-muted">Grumpd at ' . $formattedDate . '</p> </div>' ;
 				}
 			}
 			catch (PDOException $e)
+			{
+				print 'Exception: ' . $e->getMessage();
+			}
+		}
+
+		public function GetUserMessages($userid)
+		{
+			try 
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+
+				$preparedQuery = $db->prepare("SELECT u.username, m.message, m.datetime FROM messages AS m
+											   join users as u on u.id = m.userid 
+											   WHERE userid= :userid
+											   order by m.datetime desc
+											   LIMIT 15");
+
+				$preparedQuery->execute(array(':userid' => $userid));
+				$result = $preparedQuery->fetchAll();
+
+				foreach ($result as $row)
+				{
+					print '<div class="bs-callout bs-callout-info">';
+					print '<h4>' . $row["username"] . ' is grumpy </h4>';
+					print '<p>' . $row["message"] . '</p> ';
+
+					$messageDate = $row["datetime"];
+					$dt = new DateTime("@$messageDate");
+					$formattedDate = $dt->format('d/n/Y H:i');
+
+					print '<p class="text-muted">Grumpd at ' . $formattedDate . '</p> </div>' ;
+				}
+			} 
+			catch (PDOException $e) 
 			{
 				print 'Exception: ' . $e->getMessage();
 			}
@@ -38,12 +80,9 @@
 				$preparedQuery = $db->prepare("SELECT * FROM users WHERE username= :username and password= :password LIMIT 1");
 				$preparedQuery->execute(array(':username' => $username, ':password' => $password));
 				
-				$rows = $preparedQuery->fetch(PDO::FETCH_NUM);
-
-				$preparedQuery->execute(array(':username' => $username, ':password' => $password));
 				$user = $preparedQuery->fetch(PDO::FETCH_ASSOC);
-				
-				return $rows[0] == 1 ? $user : false;	
+
+				return $user != null ? $user : false;	
 			} 
 			catch (PDOException $e) 
 			{
@@ -93,14 +132,14 @@
 			}
 		}
 
-		public function InsertUserDetailed($userid, $firstname, $secname, $birthdate)
+		public function InsertUserDetailed($userid, $name, $location, $information, $birthdate)
 		{
 			try
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$insert = $db->prepare("INSERT INTO user_detailed VALUES (:userid, :firstname, :secname, :birthdate, :pictureid)");
+				$insert = $db->prepare("INSERT INTO user_detailed VALUES (:userid, :name, :location, :birthdate, :information ,:pictureid)");
 				
-				$insert->execute(array('userid' => $userid, 'firstname' => $firstname, 'secname' => $secname, 'birthdate' => $birthdate, 'pictureid' => $userid));
+				$insert->execute(array('userid' => $userid, 'name' => $name, 'location' => $location, 'birthdate' => $birthdate, 'information' => $information , 'pictureid' => $userid));
 			}
 			catch (PDOException $e)
 			{
@@ -116,6 +155,24 @@
 				$insert = $db->prepare("INSERT INTO messages(userid, datetime, message) VALUES (:userid, :datetime, :message)");
 				$insert->execute(array('userid' => $userid, 'datetime' => $datetime, 'message' => $message));
 			}
+			catch (PDOException $e)
+			{
+				print 'Exception: ' . $e->getMessage();	
+			}
+		}
+
+		public function GetDetailedInfo($userid)
+		{
+			try 
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+				$preparedQuery = $db->prepare("SELECT * FROM user_detailed WHERE userid= :userid");
+				$preparedQuery->execute(array(':userid' => $userid));
+
+				$user = $preparedQuery->fetch(PDO::FETCH_ASSOC);
+
+				return $user;
+			} 
 			catch (PDOException $e)
 			{
 				print 'Exception: ' . $e->getMessage();	

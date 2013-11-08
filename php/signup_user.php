@@ -32,13 +32,18 @@
 						</div>
 
 						<div class="form-group">
-						    <label for="input_first">First name</label>
-						    <input type="text" class="form-control" id="input_first" name="firstname" placeholder="Enter first name">
+						    <label for="input_name">Name</label>
+						    <input type="text" class="form-control" id="input_name" name="name" placeholder="Enter name">
 						</div>
 
 						<div class="form-group">
-						    <label for="input_second">Second name</label>
-						    <input type="text" class="form-control" id="input_second" name="secondname" placeholder="Enter second name">
+						    <label for="input_location">Location</label>
+						    <input type="text" class="form-control" id="input_location" name="location" placeholder="Where are you from?">
+						</div>
+
+						<div class="form-group">
+						    <label for="input_information">Personal Information</label>
+						    <input type="text" class="form-control" id="input_information" name="information" placeholder="Enter personal information">
 						</div>
 
 						<div class="form-group">

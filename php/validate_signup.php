@@ -6,14 +6,16 @@
 
 	//TODO: Implement validation
 
-	if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["firstname"]) && isset($_POST["secondname"]))
+	if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["location"]) && isset($_POST["information"])
+		&& isset($_POST["birthdate"]))
 	{
 		//Post variables
 		$username = strip_tags($_POST["username"]);
 		//Basic sha1 password encryption, later implement salt hashing
 		$password = sha1(strip_tags($_POST["password"]));
-		$firstname = strip_tags($_POST["firstname"]);
-		$secondname = strip_tags($_POST["secondname"]);
+		$name = strip_tags($_POST["name"]);
+		$location = strip_tags($_POST["location"]);
+		$personalInfo = strip_tags($_POST["information"]);
 
 		//Convert date to epoch
 		if ((strtotime($_POST["birthdate"])) == true) 
@@ -28,7 +30,11 @@
 		}
 		
 		$userid = $db->CreateNewUser($username, $password);
-		$db->InsertUserDetailed($userid, $firstname, $secondname, $birthDate);
+		$db->InsertUserDetailed($userid, $name, $location, $personalInfo, $birthDate);
+	}
+	else
+	{
+		header("Location: error.php");
 	}
 
 	//Upload the picture to the server

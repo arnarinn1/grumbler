@@ -6,11 +6,6 @@
 	if ($_SESSION["logged"] != true)
 		header("Location: index.php");
 
-	/*print $_SESSION['user'] .'</br>'; 
-    print $_SESSION['pass'] .'</br>'; 
-    print $_SESSION['userid'] .'</br>'; 
-    print $_SESSION['logged'] .'</br>'; */
-
 ?>
 
 <!doctype html>
@@ -33,7 +28,7 @@
 	      		<li class="active"><a href="#">Grumps</a></li>
 	      		<li><a href="#">Following</a></li>
 	      		<li><a href="#">Search</a></li>
-	      		<li><a href="#">Profile </a>
+	      		<li><a href="user_profile.php">Profile </a>
 	    	</ul>
 	    	</br>
 
@@ -55,6 +50,7 @@
 					$messages = $db->GetMessages();
 			    ?>
 		</div>
+		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="../scripts/bootstrap.js"/>
 	</body>
 </html>
