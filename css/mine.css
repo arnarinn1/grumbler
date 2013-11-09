@@ -12,3 +12,16 @@ small
 	line-height: 1.428571429;
 	color: #999;
 }
+
+.picture-size img
+{
+	width: 64px;
+	height: 64px;
+	margin-right: 16px;
+    overflow: hidden;
+}
+
+.emoticonPadding
+{
+	padding-right: 4px;
+}

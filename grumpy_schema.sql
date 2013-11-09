@@ -25,6 +25,7 @@ CREATE TABLE messages
 	userid integer NOT NULL, 
 	datetime integer NOT NULL, 
 	message text NOT NULL, 
+	emotion text not null,
 	FOREIGN KEY (userid) REFERENCES USERS (id)
 );
 

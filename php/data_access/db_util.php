@@ -14,7 +14,7 @@
 			try
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$result = $db->query("SELECT u.username, m.message, m.datetime from messages as m 
+				$result = $db->query("SELECT u.username, m.message, m.datetime, m.emotion from messages as m 
 									  join users as u on u.id = m.userid
 									  order by m.datetime desc
 									  limit 20");
@@ -22,9 +22,9 @@
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
-					print '<h4>' . $row["username"] . ' is grumpy </h4>';
+					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
-
 					$messageDate = $row["datetime"];
 					$dt = new DateTime("@$messageDate");
 					$formattedDate = $dt->format('d/n/Y H:i');
@@ -44,7 +44,7 @@
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
 
-				$preparedQuery = $db->prepare("SELECT u.username, m.message, m.datetime FROM messages AS m
+				$preparedQuery = $db->prepare("SELECT u.username, m.message, m.datetime, m.emotion FROM messages AS m
 											   join users as u on u.id = m.userid 
 											   WHERE userid= :userid
 											   order by m.datetime desc
@@ -56,7 +56,8 @@
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
-					print '<h4>' . $row["username"] . ' is grumpy </h4>';
+					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p> ';
 
 					$messageDate = $row["datetime"];
@@ -147,13 +148,13 @@
 			}
 		}
 
-		public function InsertMessage($userid, $datetime, $message)
+		public function InsertMessage($userid, $datetime, $message, $emotion)
 		{
 			try
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$insert = $db->prepare("INSERT INTO messages(userid, datetime, message) VALUES (:userid, :datetime, :message)");
-				$insert->execute(array('userid' => $userid, 'datetime' => $datetime, 'message' => $message));
+				$insert = $db->prepare("INSERT INTO messages(userid, datetime, message, emotion) VALUES (:userid, :datetime, :message, :emotion)");
+				$insert->execute(array('userid' => $userid, 'datetime' => $datetime, 'message' => $message, "emotion" => $emotion));
 			}
 			catch (PDOException $e)
 			{
@@ -177,6 +178,11 @@
 			{
 				print 'Exception: ' . $e->getMessage();	
 			}
+		}
+
+		public function GetEmotionUrl($emotion)
+		{
+			return 'emoticons/' . strtolower(preg_replace('/\s+/', '', $emotion)) . '.png';
 		}
 	}  
 
