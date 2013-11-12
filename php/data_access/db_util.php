@@ -73,6 +73,30 @@
 			}
 		}
 
+		public function SearchUsers($username)
+		{
+			try 
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+
+				$preparedQuery = $db->prepare("SELECT username from users
+											   WHERE username like ?
+											   LIMIT 15");
+
+				$preparedQuery->execute(array("%$username%"));
+				$result = $preparedQuery->fetchAll();
+
+				foreach ($result as $row)
+				{
+					print $row["username"] . "<br>";
+				}
+			} 
+			catch (PDOException $e) 
+			{
+				print 'Exception: ' . $e->getMessage();
+			}
+		}
+
 		public function ValidateUser($username, $password)
 		{
 			try 

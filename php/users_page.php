@@ -27,7 +27,7 @@
 			<ul class="nav nav-pills">
 	      		<li class="active"><a href="#">Grumps</a></li>
 	      		<li><a href="#">Following</a></li>
-	      		<li><a href="#">Search</a></li>
+	      		<li><a href="search_user.php">Search</a></li>
 	      		<li><a href="user_profile.php">Profile </a></li>
 	      		<li><a href="logout_user.php">Logout</a></li>
 	    	</ul>
@@ -52,7 +52,7 @@
 		        </div>
 		      </form>
 		    </div>
-		    <br>
+			<br>
 		    <h3>Grumpy messages</h3>
 			    <?php
 

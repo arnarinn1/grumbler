@@ -35,7 +35,7 @@
 			<ul class="nav nav-pills">
 	      		<li><a href="users_page.php">Grumps</a></li>
 	      		<li><a href="#">Following</a></li>
-	      		<li><a href="#">Search</a></li>
+	      		<li><a href="search_user.php">Search</a></li>
 	      		<li class="active"><a href="user_profile.php">Profile </a></li>
 	      		<li><a href="logout_user.php">Logout</a></li>
 	    	</ul>
