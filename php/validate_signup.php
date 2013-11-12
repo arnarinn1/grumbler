@@ -89,17 +89,8 @@
 	{
 		$errors = array();
 
-		if ($_POST['username'] == null)
-			array_push($errors, "Username can not be empty");
-
-		if ($_POST['name'] == null)
-			array_push($errors, "Name can not be empty");
-
-		if ($_POST['location'] == null)
-			array_push($errors, "Location can not be empty");
-
-		if ($_POST['information'] == null)
-			array_push($errors, "Personal information can not be empty");
+		if($_POST['username'] == null)
+			array_push($errors, "Username can't be empty");
 
 		if(!ctype_alnum($_POST['username']) && strlen($_POST['username']) < 50)
 			array_push($errors, "Username must be AlphaNumeric and less then 50 characters in length");
@@ -107,14 +98,14 @@
 		if ((strtotime($_POST["birthdate"])) == false)
 	   		array_push($errors, "Date of Birth must be in correct format, see placeholder");
 
-	   	if(strlen($_POST['name']) > 50 )
-			array_push($errors, "Name must be less then 50 characters in length");
+	   	if(strlen($_POST['name']) > 50 || $_POST['name'] == null)
+			array_push($errors, "Name must be less then 50 characters in length and can't be empty");
 
-		if(strlen($_POST['location']) > 100)
-			array_push($errors, "Location must be less then 100 characters in length");
+		if(strlen($_POST['location']) > 100 || $_POST['location'] == null)
+			array_push($errors, "Location must be less then 100 characters in length and can't be empty");
 
-		if(strlen($_POST['information']) > 250)
-			array_push($errors, "Personal information must be less then 250 characters in length");
+		if(strlen($_POST['information']) > 250 || $_POST['information'] == null)
+			array_push($errors, "Personal information must be less then 250 characters in length and can't be empty");
 
 		if($_FILES['photo']['name'] == null) 
 			array_push($errors, "Must upload a picture");
