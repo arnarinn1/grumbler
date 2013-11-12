@@ -34,8 +34,8 @@
 	    	</br>
 
 	    	<div class="bs-example">
-		      <form role="form" method="post" action="create_grumpy_message.php">
-		        <textarea class="form-control" rows="3" name="message"></textarea>
+		      <form id="submitMessage" role="form" method="post" action="create_grumpy_message.php">
+		        <textarea id="grumpyMessage" class="form-control" rows="3" name="message"></textarea>
 		        <div class ="boxPadding">
 		        	<div class="col-md-2">
 			        	<select id="emoticons" class="form-control" name="emotion">
@@ -47,8 +47,8 @@
 						  <option id="hostile">Hostile</option>
 						</select>
 					</div>
-					<img class="emoticonPadding" src="emoticons/1.png" id="emoticonSmiley"/> 
-		        	<button type="submit" class="btn btn-primary">Do some bitching</button>
+					<img class="emoticonPadding" src="emoticons/grumpy.png" id="emoticonSmiley"/> 
+		        	<button type="submit" id="submitMessageBtn" class="btn btn-primary">Do Some Bitching</button>
 		        </div>
 		      </form>
 		    </div>
