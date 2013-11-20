@@ -79,7 +79,7 @@
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
 
-				$preparedQuery = $db->prepare("SELECT u.username, ud.name, ud.location from users as u
+				$preparedQuery = $db->prepare("SELECT u.id, u.username, ud.name, ud.location from users as u
 											   join user_detailed as ud on u.id = ud.userid
 											   WHERE u.username like ?
 											   LIMIT 15");
@@ -189,7 +189,9 @@
 			try 
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$preparedQuery = $db->prepare("SELECT * FROM user_detailed WHERE userid= :userid");
+				$preparedQuery = $db->prepare("SELECT * FROM user_detailed as ud 
+											   join users as u on u.id = ud.userid
+											   WHERE ud.userid= :userid");
 				$preparedQuery->execute(array(':userid' => $userid));
 
 				$user = $preparedQuery->fetch(PDO::FETCH_ASSOC);

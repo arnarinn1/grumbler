@@ -1,19 +1,24 @@
 
 <?php
-	session_start();
+	
+	session_start(); 
 
 	if ($_SESSION["logged"] != true)
 		header("Location: index.php");
 
+	$user = $_GET['user'];
+	$userId = substr($user, strlen($user)-1, strlen($user));
+
 	require_once("data_access/db_util.php");
 	$db = new DbUtil();
 
-	$userInfo = $db->GetDetailedInfo($_SESSION["userid"]);
+	$userInfo = $db->GetDetailedInfo($userId);
 
 	$userBirth = $userInfo["birthdate"];
 
 	$dt = new DateTime("@$userBirth");
 	$formattedDate = $dt->format('d/n/Y');
+
 ?>
 
 <!doctype html>
@@ -52,7 +57,7 @@
 		                <div class="row">
 		                    <div class="col-sm-6 col-md-4">
 		                    	<?php 
-		                        	print '<img src="pics/' . $_SESSION["user"] . '.png" alt="profile picture" class="img-rounded img-responsive" />';
+		                        	print '<img src="pics/' . $userInfo['username'] . '.png" alt="profile picture" class="img-rounded img-responsive" />';
 		                        ?>
 		                    </div>
 		                    <div class="col-sm-6 col-md-8">
@@ -65,7 +70,7 @@
 		                    		</cite>
 		                    </small>
 		                        <p>
-		                            <i class="glyphicon glyphicon-user"></i><?php echo $_SESSION["user"] ?>
+		                            <i class="glyphicon glyphicon-user"></i><?php echo $userInfo['username'] ?>
 		                            <br />
 		                            <i class="glyphicon glyphicon-gift"></i><?php echo $formattedDate ?>
 		                            <br />
@@ -78,11 +83,10 @@
 
 		    <?php include("views/filterMessagesView.php") ?>
 
-		    <h3> <?php echo $_SESSION["user"] ?> Grumpy Messages </h3>
+		    <h3> <?php echo $user ?> Grumpy Messages </h3>
 		    <div class="col-xs-12 col-md-8">
-		    	<?php $db->GetUserMessages($_SESSION["userid"]) ?>
+		    	<?php $db->GetUserMessages($userId) ?>
 		    </div>
-		</div>
 
 		</div>
 

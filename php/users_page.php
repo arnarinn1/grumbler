@@ -30,7 +30,7 @@
 		      		<li class="dropdown">
 					  <a id="drop4" role="button" data-toggle="dropdown" href="#">Profile <b class="caret"></b></a>
 					  <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-					    <li role="presentation"><a role="menuitem" tabindex="-1" href="user_profile.php">View Profile</a></li>
+					    <li role="presentation"><a role="menuitem" tabindex="-1" href="user_profile.php">View My Profile</a></li>
 					    <li role="presentation" class="divider"></li>
 					    <li role="presentation"><a role="menuitem" tabindex="-1" href="logout_user.php">Logout</a></li>
 					  </ul>
