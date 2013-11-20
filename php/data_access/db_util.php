@@ -14,7 +14,7 @@
 			try
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$result = $db->query("SELECT u.username, m.message, m.datetime, m.emotion from messages as m 
+				$result = $db->query("SELECT u.id, u.username, m.message, m.datetime, m.emotion from messages as m 
 									  join users as u on u.id = m.userid
 									  order by m.datetime desc
 									  limit 20");
@@ -22,7 +22,9 @@
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
-					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
+					print '<div class="picture-size">';
+					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] . $row['id'] . '">';
+					print '<img class="pull-left" src="pics/' . $row["username"] .'.png"/></a></div>';
 					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
 					$messageDate = $row["datetime"];
