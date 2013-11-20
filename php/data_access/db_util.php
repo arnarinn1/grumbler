@@ -23,7 +23,7 @@
 				{
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
-					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
 					$messageDate = $row["datetime"];
 					$dt = new DateTime("@$messageDate");
@@ -57,7 +57,7 @@
 				{
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
-					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p> ';
 
 					$messageDate = $row["datetime"];
