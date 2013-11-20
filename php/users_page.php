@@ -45,6 +45,7 @@
 						  <option id="annoyed">Annoyed</option>
 						  <option id="terroristic">Terroristic</option>
 						  <option id="hostile">Hostile</option>
+						  <option id="grumpycat">Grumpy cat</option>
 						</select>
 					</div>
 					<img class="emoticonPadding" src="emoticons/grumpy.png" id="emoticonSmiley"/> 
