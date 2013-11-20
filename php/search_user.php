@@ -41,12 +41,13 @@
 
 	    	<h3> Search Users on Grumpy </h3>
 	    	<hr>
-	    	<form method="post" action="search_user.php" class="form-inline" role="form">
+	    	<form id="searchUser" method="post" action="search_user.php" class="form-inline">
 			  <div class="form-group">
 			    <label class="sr-only" for="searchUser">Search User</label>
-			    <input type="text" class="form-control" id="searchUser" name="searchUser" placeholder="Search User">
+			    <input type="text" class="form-control" id="searchUserInput" name="searchUser" placeholder="Search User">
 			  </div>
 			  <button type="submit" class="btn btn-default">Search</button>
+			  <label id="searchUserLabel" class="text-danger"></label>
 			</form>
 			<br>
 
@@ -98,5 +99,6 @@
 
 		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script src="../scripts/bootstrap.js"></script>
+		<script src="../scripts/validate_search.js"></script>
 	</body>
 </html>
