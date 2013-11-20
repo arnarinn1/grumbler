@@ -25,3 +25,10 @@ small
 {
 	padding-right: 4px;
 }
+
+footer
+{
+	margin: auto;
+	padding-left: 50px;
+	padding-right: 50px;
+}
