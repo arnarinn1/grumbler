@@ -11,9 +11,9 @@ CREATE TABLE user_detailed
 (
 	userid integer PRIMARY KEY,
 	name text not null,
-	location text not null,
+	location text,
 	birthdate integer not null,
-	information text not null,
+	information text,
 	pictureid integer not null,
 	FOREIGN KEY (userid) REFERENCES USERS (id),
 	FOREIGN KEY (pictureid) REFERENCES USERS (id)
