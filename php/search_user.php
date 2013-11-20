@@ -53,13 +53,41 @@
 
 					$user = strip_tags($_POST["searchUser"]);
 
-					$db->SearchUsers($user);
-				}
+					$results = $db->SearchUsers($user);
 
-			?>
+					print '<h4> Found ' . sizeof($results) . ' users';
+
+						
+					foreach ($results as $row) 
+					{
+			?>	
+					<br>
+					<br>
+					<div class="row">
+					    <div class="col-lg-5">
+					        <div class="media">
+					            <a class="pull-left" href="#">
+					                <?php 
+					                	print '<img class="media-object dp img-circle"
+					                src="pics/' . $row["username"] . '.png" style="width: 100px;height:100px;">';
+					                ?>
+					            </a>
+					            <div class="media-body">
+					            	<?php
+					                	print '<h4 class="media-heading">' . $row['name'] . '</h4>';
+					                	print '<h5>Username: ' . $row['username'] . ' </h5>';
+					                	print '<h5>Location: ' . $row['location'] . ' </h5>';
+					                	print '<hr style="margin:8px auto">';
+					                ?>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<br>
+
+			<?php }} ?>
 
 		<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-		<script src="../scripts/emoticons.js"></script>
-		<script src="../scripts/bootstrap.js"/>
+		<script src="../scripts/bootstrap.js"></script>
 	</body>
 </html>

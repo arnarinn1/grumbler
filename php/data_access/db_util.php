@@ -79,17 +79,15 @@
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
 
-				$preparedQuery = $db->prepare("SELECT username from users
-											   WHERE username like ?
+				$preparedQuery = $db->prepare("SELECT u.username, ud.name, ud.location from users as u
+											   join user_detailed as ud on u.id = ud.userid
+											   WHERE u.username like ?
 											   LIMIT 15");
 
 				$preparedQuery->execute(array("%$username%"));
-				$result = $preparedQuery->fetchAll();
+				$results = $preparedQuery->fetchAll();
 
-				foreach ($result as $row)
-				{
-					print $row["username"] . "<br>";
-				}
+				return $results;
 			} 
 			catch (PDOException $e) 
 			{

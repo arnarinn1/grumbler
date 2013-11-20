@@ -80,6 +80,6 @@
 
 		</div>
 		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="../scripts/bootstrap.js"/>
+		<script src="../scripts/bootstrap.js"></script>
 	</body>
 </html>
