@@ -73,7 +73,7 @@
 					    <div class="col-lg-5">
 					        <div class="media">
 					        	<?php 
-					            	print '<a class="pull-left" href="view_user.php?user=' . $row['username'] . $row['id'] . '">';
+					            	print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&id=' . $row['id'] . '">';
 				                	print '<img class="media-object dp img-circle"
 					                src="pics/' . $row["username"] . '.png" style="width: 100px;height:100px;">';
 					                ?>

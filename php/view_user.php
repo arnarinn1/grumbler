@@ -7,7 +7,7 @@
 		header("Location: index.php");
 
 	$user = $_GET['user'];
-	$userId = substr($user, strlen($user)-1, strlen($user));
+	$userId = $_GET['id'];
 
 	require_once("data_access/db_util.php");
 	$db = new DbUtil();
@@ -37,7 +37,7 @@
 
 			<ul class="nav nav-pills">
 	      		<li><a href="users_page.php">Grumps</a></li>
-	      		<li><a href="#">Following</a></li>
+	      		<li><a href="following_page.php">Following</a></li>
 	      		<li><a href="search_user.php">Search</a></li>
 	      		<li class="dropdown active">
 				  <a id="drop4" role="button" data-toggle="dropdown" href="#">Profile <b class="caret"></b></a>

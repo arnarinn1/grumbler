@@ -23,7 +23,7 @@
 				{
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size">';
-					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] . $row['id'] . '">';
+					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&id=' . $row['id'] . '">';
 					print '<img class="pull-left" src="pics/' . $row["username"] .'.png"/></a></div>';
 					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
@@ -247,7 +247,7 @@
 					
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size">';
-					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] . $row['id'] . '">';
+					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&id=' . $row['id'] . '">';
 					print '<img class="pull-left" src="pics/' . $row["username"] .'.png"/></a></div>';
 					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
