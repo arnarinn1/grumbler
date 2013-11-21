@@ -8,7 +8,7 @@
 	require_once("data_access/db_util.php");
 	$db = new DbUtil();
 
-	$followingCount = $db->GetFollowersCount($_SESSION['userid']);
+	$followers = $db->GetFollowers($_SESSION['userid']);
 
 	$userInfo = $db->GetDetailedInfo($_SESSION["userid"]);
 
@@ -73,7 +73,12 @@
 		                            <br />
 		                            <i class="glyphicon glyphicon-info-sign"></i><?php echo $userInfo["information"] ?>
 		                        	<br />
-		                            <i class="glyphicon glyphicon-plus"></i><?php echo $followingCount  . ' followers' ?></p> 
+		                            <i class="glyphicon glyphicon-plus"></i>
+		                            
+		                            <?php echo '<a href="#" data-toggle="modal" data-target="#myModal">' . sizeof($followers) . ' followers</a>' ?>
+		                            
+		                            <?php include("views/launch_followers.php") ?>
+		                        </p> 
 		                    </div>
 		                </div>
 		            </div> 

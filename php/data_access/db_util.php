@@ -261,18 +261,21 @@
 			}
 		}
 
-		public function GetFollowersCount($userid)
+		public function GetFollowers($userid)
 		{
 			try 
 			{
 				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
-				$preparedQuery = $db->prepare("SELECT count(*) from follows  
-											   WHERE following = :userid");
+				$preparedQuery = $db->prepare("SELECT u.id, u.username, ud.name  from follows as f
+											   join users as u on u.id = f.userid
+											   join user_detailed as ud on u.id = ud.userid
+											   WHERE f.following = :userid");
+				
 				$preparedQuery->execute(array(':userid' => $userid));
 
-				$follows = $preparedQuery->fetch();
-
-				return $follows[0];
+				$follows = $preparedQuery->fetchAll();
+				
+				return $follows;
 			} 
 			catch (PDOException $e)
 			{
