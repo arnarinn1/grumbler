@@ -12,6 +12,8 @@
 	require_once("data_access/db_util.php");
 	$db = new DbUtil();
 
+	$followingCount = $db->GetFollowersCount($userId);
+
 	$userInfo = $db->GetDetailedInfo($userId);
 
 	$userBirth = $userInfo["birthdate"];
@@ -74,7 +76,9 @@
 			                            <br />
 			                            <i class="glyphicon glyphicon-gift"></i><?php echo $formattedDate ?>
 			                            <br />
-			                            <i class="glyphicon glyphicon-info-sign"></i><?php echo $userInfo["information"] ?></p> 
+			                            <i class="glyphicon glyphicon-info-sign"></i><?php echo $userInfo["information"] ?>
+			                            <br />
+		                            	<i class="glyphicon glyphicon-plus"></i><?php echo $followingCount  . ' followers' ?></p>  
 			                    </div>
 			                </div>
 			            </div> 

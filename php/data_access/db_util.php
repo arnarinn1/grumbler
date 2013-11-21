@@ -261,6 +261,25 @@
 			}
 		}
 
+		public function GetFollowersCount($userid)
+		{
+			try 
+			{
+				$db = new PDO($this->database) or die ("Can't establish a connection to the database");
+				$preparedQuery = $db->prepare("SELECT count(*) from follows  
+											   WHERE following = :userid");
+				$preparedQuery->execute(array(':userid' => $userid));
+
+				$follows = $preparedQuery->fetch();
+
+				return $follows[0];
+			} 
+			catch (PDOException $e)
+			{
+				print 'Exception: ' . $e->getMessage();	
+			}
+		}
+
 		public function GetEmotionUrl($emotion)
 		{
 			return 'emoticons/' . strtolower(preg_replace('/\s+/', '', $emotion)) . '.png';

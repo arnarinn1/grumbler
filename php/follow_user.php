@@ -15,6 +15,8 @@
 		$userid = $_SESSION['userid'];
 
 		$db->InsertFollower($userid, $following);
+
+		header("Location: following_page.php");
 	}
 
 ?>
