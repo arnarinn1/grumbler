@@ -4,13 +4,13 @@
 		<title>Grumpy</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="css" href="../css/bootstrap.css">
+		<link rel="stylesheet" type="css" href="../css/mine.css">
 	</head>
 	<body>
 		<div class="container">
-			<div class="page-header">
-				<h1> Grumpy </h1>
-				<p class="lead"> Welcome to grumpy, a place to bitch about all your problems </p>
-			</div>
+			
+			<?php include("views/header.php") ?>
+
 			<div class="row">
 				<div class="col-md-4">
 					<form method="post" action="validate_login.php" class="form-signin">
@@ -25,5 +25,7 @@
 			<hr>
 			<p class="lead"> New to Grumpy ? <a href="signup_user.php">Sign-up</a></p>
 		</div>
+
+		<?php include("views/footer.php") ?>
 	</body>
 </html>
