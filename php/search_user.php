@@ -25,7 +25,7 @@
 			<aside>
 				<ul class="nav nav-pills">
 		      		<li><a href="users_page.php">Grumps</a></li>
-		      		<li><a href="#">Following</a></li>
+		      		<li><a href="following_page.php">Following</a></li>
 		      		<li class="active"><a href="search_user.php">Search</a></li>
 		      		<li class="dropdown">
 					  <a id="drop4" role="button" data-toggle="dropdown" href="#">Profile <b class="caret"></b></a>
@@ -64,7 +64,6 @@
 
 					print '<h4> Found ' . sizeof($results) . ' users';
 
-						
 					foreach ($results as $row) 
 					{
 			?>	
@@ -84,6 +83,7 @@
 					                	print '<h4 class="media-heading">' . $row['name'] . '</h4>';
 					                	print '<h5>Username: ' . $row['username'] . ' </h5>';
 					                	print '<h5>Location: ' . $row['location'] . ' </h5>';
+					                	print '<a class ="follow" href="follow_user.php?id=' . $row['id'] . '">Follow User</a>';
 					                	print '<hr style="margin:8px auto">';
 					                ?>
 					            </div>

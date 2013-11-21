@@ -6,6 +6,9 @@
 	if ($_SESSION["logged"] != true)
 		header("Location: index.php");
 
+	require_once("data_access/db_util.php");
+	$db = new DbUtil();
+
 ?>
 
 <!doctype html>
@@ -24,8 +27,8 @@
 
 			<aside>
 				<ul class="nav nav-pills">
-		      		<li class="active"><a href="#">Grumps</a></li>
-		      		<li><a href="following_page.php">Following</a></li>
+		      		<li><a href="users_page.php">Grumps</a></li>
+		      		<li class="active"><a href="#">Following</a></li>
 		      		<li><a href="search_user.php">Search</a></li>
 		      		<li class="dropdown">
 					  <a id="drop4" role="button" data-toggle="dropdown" href="#">Profile <b class="caret"></b></a>
@@ -38,21 +41,15 @@
 		    	</ul>
 		    	</br>
 		    </aside>
-		    	
-	    	<?php include("views/messageForm.php") ?>
 
-			<?php include("views/filterMessagesView.php") ?>
+		    <?php include("views/filterMessagesView.php") ?>
 
-			<br>
-			<br>
-		    <h3>Grumpy messages</h3>
-			    <?php
-
-			    	require_once("data_access/db_util.php");
-					$db = new DbUtil();
-
-					$messages = $db->GetMessages();
+		    <h3>Following</h3>
+		    <div class="col-xs-12 col-md-8">
+			    <?php 	
+			    	$db->GetFollowingMessages($_SESSION['userid']);
 			    ?>
+			    </div>
 		</div>
 		
 		<?php include("views/footer.php") ?>
