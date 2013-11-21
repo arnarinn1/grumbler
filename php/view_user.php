@@ -67,7 +67,7 @@
 			                            <?php echo $userInfo["name"] ?>
 			                        </h4>
 			                        <small>
-			                        	<cite title="San Francisco, USA"> <?php echo $userInfo["location"]?>
+			                        	<cite> <?php echo $userInfo["location"]?>
 			                        		<i class="glyphicon glyphicon-map-marker"></i>
 			                    		</cite>
 			                    </small>
