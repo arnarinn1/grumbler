@@ -48,7 +48,7 @@
 		
 		$userid = $db->CreateNewUser($username, $password);
 		$db->InsertUserDetailed($userid, $name, $location, $personalInfo, $birthDate);
-	}
+		}
 	else
 	{
 		header("Location: error.php");
