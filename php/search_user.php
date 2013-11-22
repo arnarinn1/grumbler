@@ -19,7 +19,7 @@
 			  <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 			    <li role="presentation"><a role="menuitem" tabindex="-1" href="user_profile.php">View My Profile</a></li>
 			    <li role="presentation" class="divider"></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="logout_user.php">Logout</a></li>
+			    <li role="presentation"><a role="menuitem" tabindex="-1" href="session/logout_user.php">Logout</a></li>
 			  </ul>
 			</li>
     	</ul>

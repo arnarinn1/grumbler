@@ -29,54 +29,20 @@
 		  <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
 		    <li role="presentation"><a role="menuitem" tabindex="-1" href="user_profile.php">View My Profile</a></li>
 		    <li role="presentation" class="divider"></li>
-		    <li role="presentation"><a role="menuitem" tabindex="-1" href="logout_user.php">Logout</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="session/logout_user.php">Logout</a></li>
 		  </ul>
 		</li>
 	</ul>
 	<br>
 
-	<div class="container">
-	    <div class="row">
-	        <div class="col-xs-12 col-sm-6 col-md-6">
-	            <div class="well well-sm">
-	                <div class="row">
-	                    <div class="col-sm-6 col-md-4">
-	                    	<?php 
-	                        	print '<img src="pics/' . $_SESSION["user"] . '.png" alt="profile picture" class="img-rounded img-responsive" />';
-	                        ?>
-	                    </div>
-	                    <div class="col-sm-6 col-md-8">
-	                        <h4>
-	                            <?php echo $userInfo["name"] ?>
-	                        </h4>
-	                        <small>
-	                        	<cite> <?php echo $userInfo["location"]?>
-	                        		<i class="glyphicon glyphicon-map-marker"></i>
-	                    		</cite>
-	                    </small>
-                            <i class="glyphicon glyphicon-user"></i><?php echo $_SESSION["user"] ?>
-                            <br>
-                            <i class="glyphicon glyphicon-gift"></i><?php echo $formattedDate ?>
-                            <br>
-                            <i class="glyphicon glyphicon-info-sign"></i><?php echo $userInfo["information"] ?>
-                        	<br>
-                            <i class="glyphicon glyphicon-plus"></i>
-                            
-                            <?php echo '<a href="#" data-toggle="modal" data-target="#myModal">' . sizeof($followers) . ' followers</a>' ?>
-                            
-                            <?php include("views/launch_followers.php") ?>
-	                    </div>
-	                </div>
-	            </div> 
-	        </div>
-	    </div>
+	<?php include("views/user_information_box.php") ?>
+	
+    <?php include("views/filterMessagesView.php") ?>
 
-	    <?php include("views/filterMessagesView.php") ?>
-
-	    <h3> <?php echo $_SESSION["user"] ?> Grumpy Messages </h3>
-	    <div class="col-xs-12 col-md-8">
-	    	<?php $db->GetUserMessages($_SESSION["userid"]) ?>
-	    </div>
+    <h3> <?php echo $_SESSION["user"] ?> Grumpy Messages </h3>
+    <div class="col-xs-12 col-md-8">
+    	<?php $db->GetUserMessages($_SESSION["userid"]) ?>
+    </div>
 		
 	</div>
 
