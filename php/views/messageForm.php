@@ -13,7 +13,7 @@
 			  <option id="cat">Grumpy cat</option>
 			</select>
 		</div>
-		<img class="emoticonPadding" src="emoticons/grumpy.png" id="emoticonSmiley"/> 
+		<img class="emoticonPadding" alt="emoticon" src="emoticons/grumpy.png" id="emoticonSmiley"/> 
     	<button type="submit" id="submitMessageBtn" class="btn btn-primary">Do Some Bitching</button>
     </div>
   </form>

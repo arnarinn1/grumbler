@@ -14,8 +14,8 @@
 		    <div class="col-lg-8">
 		        <div class="media">
 		        	<?php 
-		            	print '<a class="pull-left" href="view_user.php?user=' . $follower['username'] .'&id=' . $follower['id'] . '">';
-	                	print '<img class="media-object dp img-circle"
+		            	print '<a class="pull-left" href="view_user.php?user=' . $follower['username'] .'&amp;id=' . $follower['id'] . '">';
+	                	print '<img class="media-object dp img-circle" alt="' . $follower['username'] . '"
 		                src="pics/' . $follower["username"] . '.png" style="width: 100px;height:100px;">';
 		                ?>
 		            </a>

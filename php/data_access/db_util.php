@@ -17,15 +17,15 @@
 				$result = $db->query("SELECT u.id, u.username, m.message, m.datetime, m.emotion from messages as m 
 									  join users as u on u.id = m.userid
 									  order by m.datetime desc
-									  limit 20");
+									  limit 40");
 
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size">';
-					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&id=' . $row['id'] . '">';
-					print '<img class="pull-left" src="pics/' . $row["username"] .'.png"/></a></div>';
-					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
+					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&amp;id=' . $row['id'] . '">';
+					print '<img class="pull-left" alt="' . $row['username'] . '" src="pics/' . $row["username"] .'.png"/></a></div>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" alt="emoticon" src="' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
 					$messageDate = $row["datetime"];
 					$dt = new DateTime("@$messageDate");
@@ -50,7 +50,7 @@
 											   join users as u on u.id = m.userid 
 											   WHERE userid= :userid
 											   order by m.datetime desc
-											   LIMIT 15");
+											   LIMIT 20");
 
 				$preparedQuery->execute(array(':userid' => $userid));
 				$result = $preparedQuery->fetchAll();
@@ -58,8 +58,8 @@
 				foreach ($result as $row)
 				{
 					print '<div class="bs-callout bs-callout-info">';
-					print '<div class="picture-size"><img class="pull-left" src="pics/' . $row["username"] .'.png"/></div>';
-					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
+					print '<div class="picture-size"><img class="pull-left" alt="' . $row['username'] .'" src="pics/' . $row["username"] .'.png"/></div>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" alt="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p> ';
 
 					$messageDate = $row["datetime"];
@@ -247,9 +247,9 @@
 					
 					print '<div class="bs-callout bs-callout-info">';
 					print '<div class="picture-size">';
-					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&id=' . $row['id'] . '">';
-					print '<img class="pull-left" src="pics/' . $row["username"] .'.png"/></a></div>';
-					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
+					print '<a class="pull-left" href="view_user.php?user=' . $row['username'] .'&amp;id=' . $row['id'] . '">';
+					print '<img class="pull-left" alt="' . $row['username'] .'" src="pics/' . $row["username"] .'.png"/></a></div>';
+					print '<h4>' . $row["username"] . ' is ' . $row["emotion"] .' <img class="emoticon" alt="emoticon" src=" ' . $this->GetEmotionUrl($row["emotion"]) . '"/></h4>';
 					print '<p>' . $row["message"] . '</p>';
 
 					print '<p class="text-muted">Grumpd at ' . $formattedDate . '</p> </div>' ;
